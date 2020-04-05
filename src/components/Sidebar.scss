@@ -1,0 +1,13 @@
+@import '../global-styles/constants.scss';
+
+.sidebar-wrapper {
+    min-width: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    .sb-pill {
+        flex: 1;
+        background-color: $accent-color;
+    }
+}

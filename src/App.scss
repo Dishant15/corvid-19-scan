@@ -1,8 +1,9 @@
-@import './styles/constants.scss';
+@import './global-styles/constants.scss';
 
 #App {
+  display: flex;
   text-align: center;
   min-height: 100vh;
 
-  background-color: $primary-color;
+  background-color: $accent-light;
 }

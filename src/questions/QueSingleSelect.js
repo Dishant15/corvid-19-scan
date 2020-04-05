@@ -14,8 +14,10 @@ export default ({index, question, options, ans, ans_selected, setAns}) => {
         <div className='que-pill'>
             <div className='que-question'>{question}</div>
             {ans_selected ?
-                <div className='que-option selected'>
-                    {get(answer, 'text', '')}
+                <div className='que-options-wrapper'>
+                    <div className='que-option selected'>
+                        {get(answer, 'text', '')}
+                    </div>
                 </div>
                 :
                 <div className='que-options-wrapper'>

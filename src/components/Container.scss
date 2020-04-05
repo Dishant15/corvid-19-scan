@@ -1,4 +1,12 @@
-.App-container {
+.app-container {
     display: flex;
     flex: 1;
+    padding: 10px;
+    padding-top: 0px;
+
+    .app-main-content {
+        width: 100%;
+        border-radius: 10px;
+        background-color: white;
+    }
 }

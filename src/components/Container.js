@@ -18,8 +18,10 @@ export default ({tab}) => {
     }
 
     return (
-        <div className='App-container'>
-            {content}
+        <div className='app-container'>
+            <div className='app-main-content'>
+                {content}
+            </div>
         </div>
     )
 }

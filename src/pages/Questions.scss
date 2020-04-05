@@ -1,0 +1,43 @@
+@import '../global-styles/constants.scss';
+
+.que-container {
+    padding: 30px;
+
+    .que-pill {
+        margin: 10px;
+
+        .que-question {
+            border-radius: 10px;
+            display: inline-block;
+            padding : 15px;
+            background-color: $accent-dark;
+            color: $primary-color;
+        }
+
+        .que-options-wrapper {
+            display: block;
+            margin-top: 8px;
+        }
+
+        .que-option {
+            cursor: pointer;
+            display: inline-block;
+            border-radius: 10px;
+            min-width: 60px;
+            height: 30px;
+            line-height: 30px;
+            padding: 8px;
+            margin : 5px;
+            background-color: $accent-secondary;
+            color: $primary-color;
+
+            &.selected, &.confirm {
+                background-color: $accent-color;
+            }
+
+            &.active {
+                background-color: yellowgreen;
+            }
+        }
+    }
+}

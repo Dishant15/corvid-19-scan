@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Axios from 'axios'
 
 import get from 'lodash/get'
@@ -58,12 +58,3 @@ export const useGetQuestionsData = () => {
 
     return [api_state, data, getApiData]
 }
-
-
-const AppContext = React.createContext()
-// app_state : { language : 'english', index : -1 }, setAppState
-// index starts with -1 : select lang, 0 start with 1st question in array
-export const AppProvider = AppContext.Provider
-export const AppConsumer = AppContext.Consumer
-
-export default AppContext

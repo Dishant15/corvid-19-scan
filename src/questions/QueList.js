@@ -32,7 +32,6 @@ export default class QueList extends React.Component{
 
         return (
             <div>
-                <div>This is list of questions</div>
                 {question_list.map((que_data, i) => {
                     // don't render next questions till this one is answered
                     if(i > current_ind) {
@@ -44,7 +43,7 @@ export default class QueList extends React.Component{
                     if(que_type === 'text') {
                         return <QueTextInput index={i} key={q_key}
                                     question={question} ans={ans} ans_selected={ans_selected}
-                                    placeholder={que_data.placeholder} buttonText={que_data.buttonText}
+                                    placeholder={que_data.placeholder} buttonText={que_data.buttonText} info={que_data.info}
                                     setAns={this.handleAnsSelect}
                                 />
                     } else if (que_type === 'single') {

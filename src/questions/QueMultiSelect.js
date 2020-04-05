@@ -42,8 +42,10 @@ export default ({index, question, options, ans, ans_selected, setAns}) => {
         <div className='que-pill'>
             <div className='que-question'>{question}</div>
             {ans_selected ?
-                <div className='que-option selected'>
-                    {answer}
+                <div className='que-options-wrapper'>
+                    <div className='que-option selected'>
+                        {answer}
+                    </div>
                 </div>
                 :
                 <div className='que-options-wrapper'>
@@ -58,11 +60,13 @@ export default ({index, question, options, ans, ans_selected, setAns}) => {
                             </div>
                         )
                     })}
-                    <div onClick={() => setAns(index, selAns)}
-                        className='que-option confirm'>
-                        
-                        Confirm
-                    </div>
+                    {Boolean(selAns.length) &&
+                        <div onClick={() => setAns(index, selAns)}
+                            className='que-option confirm'>
+                            
+                            Confirm
+                        </div>
+                    }
                 </div>
             }
         </div>

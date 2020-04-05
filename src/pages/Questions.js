@@ -4,6 +4,8 @@ import { useGetQuestionsData } from "../utils/data";
 import QueSingleSelect from '../questions/QueSingleSelect';
 import QueList from '../questions/QueList';
 
+import './Questions.scss'
+
 const FIRST_QUE = {
     question: "Hello, Please tell us which language you'd like to take this test in:",
     options: [
@@ -38,8 +40,7 @@ export default () => {
     }
 
     return (
-        <div>
-            <div className="que-title">This is questions</div>
+        <div className='que-container'>
             <QueSingleSelect 
                 question={FIRST_QUE.question} options={FIRST_QUE.options}
                 ans={language} ans_selected={ans_selected}

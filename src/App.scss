@@ -1,0 +1,8 @@
+@import './styles/constants.scss';
+
+#App {
+  text-align: center;
+  min-height: 100vh;
+
+  background-color: $primary-color;
+}

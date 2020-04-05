@@ -1,30 +1,25 @@
-import React, { useEffect } from 'react';
-import Axios from 'axios'
+import React, { useState } from 'react';
 
 import Sidebar from "./components/Sidebar";
 import Container from "./components/Container";
+
+import { AppProvider } from "./utils/data";
 
 import './App.scss';
 
 function App() {
 
-	const url = 'http://ec2-3-7-38-181.ap-south-1.compute.amazonaws.com/v1/api/bot/'
-
-	useEffect(() => {
-		Axios.post(url, {language : 'hindi'})
-			.then(res => {
-				console.log(res)
-			})
-			.catch(err => {
-				console.log(err)
-			})
-	}, [])
+	const [app_state, setAppState] = useState({language : 'english', index : -1, tab : 1})
+	const [tab, setTab] = useState(1)
 
 	return (
 		<div id="App">
-			<Sidebar />
 
-			<Container />
+			<AppProvider value={{app_state, setAppState}}>
+				<Sidebar tab={tab} setTab={setTab} />
+
+				<Container tab={tab} />
+			</AppProvider>
 		</div>
 	);
 }

@@ -11,8 +11,8 @@ const FIRST_QUE = {
     options: [
         {text :"English", value : 'english'}, 
         {text :"हिन्दी", value : 'hindi'}, 
-        {text : "తెలుగు", value : 'bangla'}, 
-        {text : "বাংলা", value : 'telugu'},
+        {text : "বাংলা", value : 'bangla'}, 
+        {text : "తెలుగు", value : 'telugu'},
         {text : "தமிழ்", value : 'tamil'}
     ]
 }

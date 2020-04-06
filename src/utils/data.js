@@ -21,7 +21,9 @@ export const useGetQuestionsData = () => {
         Axios.post(url, {language})
 			.then(res => {
                 // console.log(res)
+                // create question list
                 let questions = get(res, 'data.bot.messages', {})
+                let confirm_text = get(res, 'data.bot.selectedText', 'confirm')
                 let que_list = []
                 let default_ans = '';
                 for(const que in questions) {
@@ -40,7 +42,7 @@ export const useGetQuestionsData = () => {
                         ...questions[que],
                         que_type, ans : default_ans,
                         ans_selected : false,
-                        q_key: que
+                        q_key: que, confirm_text
                     }
 
                     que_list.push(current_que)

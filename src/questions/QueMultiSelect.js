@@ -3,7 +3,7 @@ import React, {useState} from "react";
 import find from 'lodash/find'
 import get from 'lodash/get'
 
-export default ({index, question, options, ans, ans_selected, setAns}) => {
+export default ({index, question, options, confirm_text, ans, ans_selected, setAns}) => {
 
     const [selAns, setSelAns] = useState([])
 
@@ -64,7 +64,7 @@ export default ({index, question, options, ans, ans_selected, setAns}) => {
                         <div onClick={() => setAns(index, selAns)}
                             className='que-option confirm'>
                             
-                            Confirm
+                            {confirm_text}
                         </div>
                     }
                 </div>

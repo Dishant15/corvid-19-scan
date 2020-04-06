@@ -52,7 +52,7 @@ export default class QueList extends React.Component{
                                     options={options} setAns={this.handleAnsSelect}
                                 />
                     } else {
-                        return <QueMultiSelect index={i} key={q_key}
+                        return <QueMultiSelect index={i} key={q_key} confirm_text={que_data.confirm_text}
                                     question={question} ans={ans} ans_selected={ans_selected}
                                     options={options} setAns={this.handleAnsSelect}
                                 />

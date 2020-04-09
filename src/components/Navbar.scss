@@ -26,12 +26,21 @@
                 color: $primary-color-darken;
                 background-color: whitesmoke;
             }
+
+            .sb-pill-icn {
+                padding : 15px;
+                padding-right: 25px;
+            }
+
+            &>div {
+                display: inline-block;
+            }
         }
 
         &.active .sb-pill-content {
             border: 2px solid $accent-color;
             background-color: $accent-color;
-            color : $primary-color-darken;
+            color : black;
         }
     }
 }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import Container from "./components/Container";
 
 
@@ -15,6 +16,8 @@ function App() {
 			<Navbar tab={tab} setTab={setTab} />
 
 			<Container tab={tab} />
+
+			<Footer />
 		</div>
 	);
 }

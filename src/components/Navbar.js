@@ -1,5 +1,8 @@
 import React from 'react';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faQuestion, faChartLine } from '@fortawesome/free-solid-svg-icons'
+
 import "./Navbar.scss";
 
 export default ({tab, setTab}) => {
@@ -12,7 +15,7 @@ export default ({tab, setTab}) => {
 
                 <div className='sb-pill-content'>
                     <div className='sb-pill-icn'>
-
+                        <FontAwesomeIcon icon={faQuestion} />
                     </div>
                     <div className='sb-pill-txt'>
                         Q and A
@@ -25,7 +28,7 @@ export default ({tab, setTab}) => {
 
                 <div className='sb-pill-content'>
                     <div className='sb-pill-icn'>
-
+                        <FontAwesomeIcon icon={faChartLine} />
                     </div>
                     <div className='sb-pill-txt'>
                         Upload
@@ -38,7 +41,7 @@ export default ({tab, setTab}) => {
 
                 <div className='sb-pill-content'>
                     <div className='sb-pill-icn'>
-
+                        <FontAwesomeIcon icon={faChartLine} />
                     </div>
                     <div className='sb-pill-txt'>
                         Analytics

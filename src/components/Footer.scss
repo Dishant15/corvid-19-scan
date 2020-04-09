@@ -1,0 +1,16 @@
+@import '../global-styles/constants.scss';
+
+#footer {
+    height: $footer-height;
+    color: whitesmoke;
+
+    .ft-link {
+        cursor: pointer;
+        display: inline-block;
+        padding: 15px;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

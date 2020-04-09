@@ -20,9 +20,10 @@ export default ({index, question, ans, ans_selected, placeholder, buttonText,inf
                 <div className='que-options-wrapper text'>
                     <input placeholder={placeholder} name='age' value={text}
                         onChange={(e) => setText(e.target.value)} />
-                    <button onClick={() => setAns(index, text)}>
+
+                    <div className='que-option selected' onClick={() => setAns(index, text)}>
                         {buttonText}
-                    </button>
+                    </div>
                 </div>
             }
         </div>

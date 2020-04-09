@@ -1,6 +1,6 @@
 import React from 'react';
 
-import "./Sidebar.scss";
+import "./Navbar.scss";
 
 export default ({tab, setTab}) => {
 

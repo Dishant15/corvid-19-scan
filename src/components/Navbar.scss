@@ -1,0 +1,37 @@
+@import '../global-styles/constants.scss';
+
+.sidebar-wrapper {
+    height: 80px;
+    display: flex;
+    align-items: stretch;
+
+    .sb-pill {
+        cursor: pointer;
+        flex: 1;
+        padding: 15px;
+        font-size: 1.2em;
+        font-weight: bold;
+
+        .sb-pill-content {
+            height: 100%;
+            vertical-align: middle;
+            border-radius: 10px;
+            background-color: $primary-color-darken;
+            border: 2px solid $primary-color-darken;
+            color: whitesmoke;
+            transition: all .2s ease-in-out;
+
+            &:hover {
+                border: 2px solid $accent-color;
+                color: $primary-color-darken;
+                background-color: whitesmoke;
+            }
+        }
+
+        &.active .sb-pill-content {
+            border: 2px solid $accent-color;
+            background-color: $accent-color;
+            color : $primary-color-darken;
+        }
+    }
+}

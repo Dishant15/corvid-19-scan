@@ -11,12 +11,22 @@
             display: inline-block;
             padding : 15px;
             background-color: $accent-dark;
-            color: $primary-color;
+            color: whitesmoke;
+            font-weight: bold;
         }
 
         .que-options-wrapper {
             display: block;
             margin-top: 8px;
+
+            input {
+                border: none;
+                border-bottom: 1px solid $primary-color-darken;
+                min-height: 30px;
+                min-width: 80px;
+                padding-left: 20px;
+                font-size: 1em;
+            }
         }
 
         .que-option {
@@ -29,7 +39,8 @@
             padding: 8px;
             margin : 5px;
             background-color: $accent-secondary;
-            color: $primary-color;
+            color: whitesmoke;
+            font-weight: bold;
 
             &.selected, &.confirm {
                 background-color: $accent-color;

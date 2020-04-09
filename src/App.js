@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import Sidebar from "./components/Sidebar";
+import Navbar from "./components/Navbar";
 import Container from "./components/Container";
 
 
@@ -12,7 +12,7 @@ function App() {
 	return (
 		<div id="App">
 
-			<Sidebar tab={tab} setTab={setTab} />
+			<Navbar tab={tab} setTab={setTab} />
 
 			<Container tab={tab} />
 		</div>

@@ -8,7 +8,7 @@ import Container from "./components/Container";
 import './App.scss';
 
 function App() {
-	const [tab, setTab] = useState(1)
+	const [tab, setTab] = useState(2)
 
 	return (
 		<div id="App">

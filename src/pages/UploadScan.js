@@ -1,130 +1,101 @@
 import React, { Component } from 'react';
-import ReactCrop from 'react-image-crop';
+import Axios from "axios"
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUndoAlt, faChartLine } from '@fortawesome/free-solid-svg-icons'
+
+import UploadScanBlock from "../components/UploadScanBlock"
 
 import './UploadScan.scss'
-import 'react-image-crop/lib/ReactCrop.scss';
-
-const acceptedFileTypes = 'image/x-png, image/png, image/jpg, image/jpeg'
 
 export default class UploadScan extends Component {
+
+	/**
+	 * Parent :
+	 * 		Container
+	 * Render :
+	 * 		UploadScanBlock
+	 */
 
 	constructor(props){
 		super(props)
 		this.state = {
-			imgSrc: null,
 			croppedImageUrl: null,
-			crop: {
-				unit: '%',
-			}
 		}
 	}
 
-	handleFileSelect = (event) => {
-		const selected_image = event.target.files[0]
-		if(selected_image) {
-			this.setState({ imgSrc: URL.createObjectURL(selected_image) })
-		}
-	}
+	onSubmit = (e) => {
+		e.preventDefault()
+		const url = "http://3.7.38.181/v1/api/uploaddata/"
 
-	handleOnCropChange = (crop) => {
-		this.setState({crop})
-	}
+		const formData = document.getElementById("scan-form")
+		const data = new FormData(formData)
 
-	onImageLoaded = image => {
-		this.imageRef = image;
-	};
-
-	onCropClick = () => {
-		this.makeClientCrop(this.state.crop)
-	}
-
-	onCropCancleClick = () => {
-		this.setState({ imgSrc: null, 
-			croppedImageUrl: null,
-			crop: {
-				unit: '%',
-			}
+		Axios({
+			method: 'post',
+			url,
+			headers: {
+				'content-type': 'multipart/form-data',
+			},
+			data
 		})
+			.then(res => {
+            	console.log("UploadScan -> onSubmit -> res", res)
+			})
+			.catch(err => {
+				console.log(err.response)
+			})
 	}
 
-	makeClientCrop = async (crop) => {
-		if (this.imageRef && crop.width && crop.height) {
-			const croppedImageUrl = await this.getCroppedImg(
-										this.imageRef,
-										crop,
-										'newFile.jpeg'
-									);
-			this.setState({ croppedImageUrl });
-		}
-	}
-
-	getCroppedImg(image, crop, fileName) {
-		const canvas = document.createElement('canvas');
-		const scaleX = image.naturalWidth / image.width;
-		const scaleY = image.naturalHeight / image.height;
-		canvas.width = crop.width;
-		canvas.height = crop.height;
-		const ctx = canvas.getContext('2d');
-
-		ctx.drawImage(
-			image,
-			crop.x * scaleX,
-			crop.y * scaleY,
-			crop.width * scaleX,
-			crop.height * scaleY,
-			0,
-			0,
-			crop.width,
-			crop.height
-		);
-
-		return new Promise((resolve, reject) => {
-			canvas.toBlob(blob => {
-			if (!blob) {
-				//reject(new Error('Canvas is empty'));
-				console.error('Canvas is empty');
-				return;
-			}
-			blob.name = fileName;
-			window.URL.revokeObjectURL(this.fileUrl);
-			this.fileUrl = window.URL.createObjectURL(blob);
-			resolve(this.fileUrl);
-			}, 'image/jpeg');
-		});
+	setCropImage = (image_blob) => {
+		this.setState({ croppedImageUrl: image_blob })
 	}
 
 	render = () => {
-		const { imgSrc, crop, croppedImageUrl } = this.state
+		const { croppedImageUrl } = this.state
 
 		return (
 			<div className="upload-scan-wrapper">
-				{imgSrc ?
-					<div>
-						<ReactCrop 
-							src={imgSrc} 
-							crop={crop}
-							onImageLoaded={this.onImageLoaded}
-							onChange={this.handleOnCropChange}/>
-						<button onClick={this.onCropClick}>Crop</button>
-						<button onClick={this.onCropCancleClick}>Cancle</button>						
-					</div>
-					:
-					<div className="upload-block">
+				{croppedImageUrl ? 
+					<form id="scan-form" className="crop-wrapper">
 						<div>
-							<input type='file' 
-								accept={acceptedFileTypes} 
-								multiple={false} 
-								onChange={this.handleFileSelect} 
-							/>
+							<input name="name" placeholder="name"/>
 						</div>
-					</div>
+						<div>
+							<input name="lat" placeholder="lat"/>
+						</div>
+						<div>
+							<input name="long" placeholder="long"/>
+						</div>
+						<div>
+							<input name="age" placeholder="age"/>
+						</div>
+						<img name="image" className="cropperd-image" src={croppedImageUrl} alt="crop"/>
+		
+						<div className="action-wrapper">
+		
+							<div className="action">
+								<button className="btn accent-btn"
+									onClick={this.onSubmit}
+									>
+										<FontAwesomeIcon icon={faChartLine} />
+										Analyse
+								</button>
+							</div>
+		
+							<div className="action">
+								<button className="btn accent-secondary-btn" 
+									onClick={() => this.setState({ croppedImageUrl: null })}>
+										<FontAwesomeIcon icon={faUndoAlt} />
+										Crop Again
+								</button>
+							</div>
+		
+						</div>
+					</form>
+					:
+					<UploadScanBlock setCropImage={this.setCropImage}/>
 				}
-				{croppedImageUrl && 
-					<div>
-						<img src={croppedImageUrl} alt="crop"/>
-						<button onClick={() => this.setState({ croppedImageUrl: null })}>Re-Crop</button>
-						<button>Done</button>
-					</div>}
 			</div>
 		)
 	}

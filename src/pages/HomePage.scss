@@ -1,0 +1,11 @@
+@import '../global-styles/constants.scss';
+@import '../global-styles/button';
+
+#HomePage {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  min-height: 100vh;
+
+  background-color: $primary-color;
+}

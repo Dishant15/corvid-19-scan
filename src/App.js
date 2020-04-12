@@ -1,25 +1,37 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
+import { BrowserRouter, Route, Switch } from "react-router-dom"
 
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import Container from "./components/Container";
+import HomePage from './pages/HomePage'
+import AuthPage from './pages/AuthPage'
 
+import PageNotFound from './others/PageNotFound'
 
-import './App.scss';
+import Urls from './UrlConfig'
 
-function App() {
-	const [tab, setTab] = useState(2)
+import './App.scss'
 
-	return (
-		<div id="App">
+export default class App extends Component {
 
-			<Navbar tab={tab} setTab={setTab} />
+	state = {
+		mount_app : false
+	}
 
-			<Container tab={tab} />
+	render = () => {
+		return (
+			<BrowserRouter>
+				<Switch>
 
-			<Footer />
-		</div>
-	);
+					<Route exact path={Urls.getHomePage()} component={HomePage} />
+
+					<Route path={Urls.getAuthPages()} component={AuthPage} />
+					{/* <Route path={Urls.getForgotPassPage()} component={ForgetPassword} />
+					<Route path={Urls.getResetPassPage()} component={ResetPasswordPage} /> */}
+
+					<Route exact path={Urls.get404()} component={PageNotFound} />
+					<Route exact path="*" component={PageNotFound} />
+
+				</Switch>
+			</BrowserRouter>
+		)
+	}
 }
-
-export default App;

@@ -10,7 +10,9 @@
     border: none;
     outline: none;
     font-size: 1.2em;
+    text-align: center;
     transition: all .2s ease-in-out;
+    position: relative;
 
     &.accent-secondary-btn {
         background-color: $accent-secondary;
@@ -34,6 +36,15 @@
 
         &:hover {
             background-color: darken($color: $accent-light, $amount: 10%);
+        }
+    }
+
+    &.primary-color-btn {
+        background-color: $primary-color-darken;
+        color: #fff;
+
+        &:hover {
+            background-color: darken($color: $primary-color-darken, $amount: 10%);
         }
     }
 }

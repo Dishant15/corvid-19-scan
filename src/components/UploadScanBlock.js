@@ -109,6 +109,8 @@ export default class UploadScanBlock extends Component {
 				console.error('Canvas is empty');
 				return;
 			}
+			
+			this.props.setBlob(blob)
 			blob.name = fileName;
 			window.URL.revokeObjectURL(this.fileUrl);
 			this.fileUrl = window.URL.createObjectURL(blob);

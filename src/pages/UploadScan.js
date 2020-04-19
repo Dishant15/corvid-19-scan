@@ -21,6 +21,8 @@ export default class UploadScan extends Component {
 		super(props)
 		this.state = {
 			croppedImageUrl: null,
+			blob: null,
+			loading: false
 		}
 	}
 
@@ -28,9 +30,13 @@ export default class UploadScan extends Component {
 		e.preventDefault()
 		const url = "http://3.7.38.181/v1/api/uploaddata/"
 
-		const $form = document.getElementById("scan-form")
-		const data = new FormData($form)
+		const { blob } = this.state
 
+		const $form = document.getElementById("scan-form")
+		let data = new FormData($form)
+		data.append('image', blob, blob.name)
+
+		this.setState({ loading: true })
 		Axios({
 			method: 'post',
 			url,
@@ -40,10 +46,12 @@ export default class UploadScan extends Component {
 			data
 		})
 			.then(res => {
-            	console.log("UploadScan -> onSubmit -> res", res)
+				console.log("UploadScan -> onSubmit -> res", res)
+				this.setState({ loading: false })
 			})
 			.catch(err => {
 				console.log(err.response)
+				this.setState({ loading: false })
 			})
 	}
 
@@ -51,26 +59,30 @@ export default class UploadScan extends Component {
 		this.setState({ croppedImageUrl: image_blob })
 	}
 
+	setBlob = (blob) => {
+		this.setState({ blob })
+	}
+
 	render = () => {
-		const { croppedImageUrl } = this.state
+		const { croppedImageUrl, loading } = this.state
 
 		return (
 			<div className="upload-scan-wrapper">
 				{croppedImageUrl ? 
 					<form id="scan-form" className="crop-wrapper">
 						<div>
-							<input name="name" placeholder="name"/>
+							<input name="name" placeholder="name" defaultValue={'test'}/>
 						</div>
 						<div>
-							<input name="lat" placeholder="lat"/>
+							<input name="lat" placeholder="lat" defaultValue={12}/>
 						</div>
 						<div>
-							<input name="long" placeholder="long"/>
+							<input name="long" placeholder="long" defaultValue={12}/>
 						</div>
 						<div>
-							<input name="age" placeholder="age"/>
+							<input name="age" placeholder="age" defaultValue={25}/>
 						</div>
-						<img name="image" className="cropperd-image" src={croppedImageUrl} alt="crop"/>
+						<img className="cropperd-image" src={croppedImageUrl} alt="crop"/>
 		
 						<div className="action-wrapper">
 		
@@ -79,7 +91,7 @@ export default class UploadScan extends Component {
 									onClick={this.onSubmit}
 									>
 										<FontAwesomeIcon icon={faChartLine} />
-										Analyse
+									{loading ? "Loading..." : "Analyse"}
 								</button>
 							</div>
 		
@@ -94,7 +106,10 @@ export default class UploadScan extends Component {
 						</div>
 					</form>
 					:
-					<UploadScanBlock setCropImage={this.setCropImage}/>
+					<UploadScanBlock 
+						setCropImage={this.setCropImage}
+						setBlob={this.setBlob}
+					/>
 				}
 			</div>
 		)

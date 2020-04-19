@@ -28,8 +28,8 @@ export default class UploadScan extends Component {
 		e.preventDefault()
 		const url = "http://3.7.38.181/v1/api/uploaddata/"
 
-		const formData = document.getElementById("scan-form")
-		const data = new FormData(formData)
+		const $form = document.getElementById("scan-form")
+		const data = new FormData($form)
 
 		Axios({
 			method: 'post',

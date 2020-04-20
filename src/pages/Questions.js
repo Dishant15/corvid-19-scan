@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useGetQuestionsData } from "../utils/data";
 import QueSingleSelect from '../questions/QueSingleSelect';
 import QueList from '../questions/QueList';
+import Result from '../components/Results'
 
 import './Questions.scss'
 
@@ -28,15 +29,23 @@ const FIRST_QUE = {
  */
 export default () => {
 
-    const [api_state, data, getApiData] = useGetQuestionsData()
+    const [api_state, data, getApiData, results] = useGetQuestionsData()
 
     const [language, setLanguage] = useState('engish')
     const [ans_selected, setAnsSelected] = useState(false)
+
+    const [show_results, setShowResults] = useState(false)
 
     const selectLanguage = (_, lang) => {
         setLanguage(lang)
         setAnsSelected(true)
         getApiData(lang)
+    }
+
+    const onComplete = (scan_result) => {
+        // scan_result : 0 | 1 | 2
+        setShowResults(true)
+        // calculate total score
     }
 
     return (
@@ -48,7 +57,11 @@ export default () => {
             />
             {api_state.loading && 'Loading ....'}
             {api_state.fetched &&
-                <QueList data={data} />
+                <QueList data={data} onComplete={onComplete} />
+            }
+
+            {show_results &&
+                <Result />
             }
         </div>
     )

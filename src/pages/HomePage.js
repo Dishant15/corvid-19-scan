@@ -8,7 +8,7 @@ import Container from "../components/Container";
 import './HomePage.scss';
 
 function HomePage() {
-	const [tab, setTab] = useState(2)
+	const [tab, setTab] = useState(1)
 
 	return (
 		<div id="HomePage">

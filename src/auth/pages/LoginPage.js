@@ -27,7 +27,7 @@ export default ({from_route}) => {
     const loginUser = useCallback((e) => {
         if(e) e.preventDefault();
         history.push('/')
-    })
+    }, [])
 
     return (
         <form onSubmit={loginUser}>

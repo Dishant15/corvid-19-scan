@@ -2,6 +2,7 @@ import React from "react";
 import QueTextInput from "./QueTextInput";
 import QueSingleSelect from "./QueSingleSelect";
 import QueMultiSelect from "./QueMultiSelect";
+import UploadScanQuestion from "./UploadScanQuestion";
 
 export default class QueList extends React.Component{
 
@@ -58,6 +59,10 @@ export default class QueList extends React.Component{
                                 />
                     }
                 })}
+                <UploadScanQuestion onComplete={this.props.onComplete} />
+                {current_ind >= question_list.length &&
+                    <UploadScanQuestion />
+                }
             </div>
         )
     }

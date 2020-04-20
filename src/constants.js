@@ -13,3 +13,6 @@ export const PROFILE_BANNER = "https://office-static.s3.eu-west-2.amazonaws.com/
 export const USER_PROFILE_PIC = "https://office-static.s3.eu-west-2.amazonaws.com/media/user_profile_picture.png"
 export const HEADER_BANNER_BG = "https://office-static.s3.eu-west-2.amazonaws.com/media/header_banner_bg.jpeg"
 export const DEFAULT_AVATAR = "https://office-static.s3.eu-west-2.amazonaws.com/media/default_avatar.jpeg"
+
+
+export const UPLOAD_SCAN_URL = "http://3.7.38.181/v1/api/uploaddata/"

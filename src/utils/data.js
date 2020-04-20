@@ -12,6 +12,7 @@ export const useGetQuestionsData = () => {
 
     const [api_state, setApiState] = useState({loading : false, fetched : false, error : {}})
     const [data, setData] = useState({})
+    const [results, setResults] = useState({})
 
     // "english","hindi","bangla","telugu","tamil"
     const getApiData = (language='english') => {
@@ -58,5 +59,5 @@ export const useGetQuestionsData = () => {
         setApiState({...api_state, loading:true, error : {}})
     }
 
-    return [api_state, data, getApiData]
+    return [api_state, data, getApiData, results]
 }

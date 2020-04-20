@@ -43,10 +43,48 @@ export default () => {
         getApiData(lang)
     }
 
-    const onComplete = (que_list) => {
-        console.log("onComplete -> que_list", que_list)
+    const onComplete = (que_list, scan_result) => {
+        console.log("onComplete -> scan_result", scan_result)
+        // scan_result : 0 | 1 | 2
+        let curr_risk_index = 0
+
+        for (let index = 0; index < que_list.length; index++) {
+            const que = que_list[index];
+            if(que.q_key == 'age') continue;
+
+            if(que.que_type === 'single') {
+                let curr_ans = Boolean(Number(que.ans)) ? Number(que.ans) : 0
+                curr_risk_index = curr_risk_index + curr_ans
+            } else {
+                // get from multi question
+                for (let a_ind = 0; a_ind < que.ans.length; a_ind++) {
+                    const ans = que.ans[a_ind];
+                    let curr_ans = Boolean(Number(ans)) ? Number(ans) : 0
+                    curr_risk_index = curr_risk_index + curr_ans
+                }
+            }
+        }
+        console.log("onComplete -> curr_risk_index", curr_risk_index)
         setShowResults(true)
         // calculate total score
+        if(scan_result == 2) {
+            // Covid
+            if(curr_risk_index > 10) {
+                // High risk
+                setRisk(3)
+            }
+            else { // Medium risk
+                setRisk(2)
+            }
+        } else {
+            if(curr_risk_index < 10) {
+                setRisk(1)
+            } else if (curr_risk_index < 15) {
+                setRisk(2)
+            } else {
+                setRisk(3)
+            }
+        }
     }
 
     return (
@@ -62,7 +100,7 @@ export default () => {
             }
 
             {show_results &&
-                <Result data={results} />
+                <Result data={results} risk={risk} />
             }
         </div>
     )

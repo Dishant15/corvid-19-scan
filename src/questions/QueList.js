@@ -33,10 +33,8 @@ export default class QueList extends React.Component{
         // scan_result : 0 | 1 | 2
         const {onComplete} = this.props
         const {question_list} = this.state
-        let result_list = [...question_list, {q_key:'scan', ans : scan_result}]
-        // add scan res to question_list
         // pass question_list to parent
-        onComplete(result_list)
+        onComplete(question_list, scan_result)
     }
 
     render = () => {
@@ -70,9 +68,9 @@ export default class QueList extends React.Component{
                                 />
                     }
                 })}
-                <UploadScanQuestion onComplete={this.onComplete} />
+                
                 {current_ind >= question_list.length &&
-                    <></>
+                    <UploadScanQuestion onComplete={this.onComplete} />
                 }
             </div>
         )

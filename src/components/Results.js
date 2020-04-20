@@ -14,17 +14,17 @@ export default ({data, risk}) => {
     
     return (
         <div id="results">
-            <div class='header'>
+            <div className='header'>
                 {data.header_title} : <b>{data[risk_type]}</b>
             </div>
 
-            <div class='recom-wrapper'>
-                <div class='recom-title'>
+            <div className='recom-wrapper'>
+                <div className='recom-title'>
                     {recom.title}
                 </div>
                 {recom.list.map((item, ind)=> {
                     return (
-                        <div class='recom-content' key={ind}>
+                        <div className='recom-content' key={ind}>
                             {item}
                         </div>
                     )

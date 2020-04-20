@@ -50,7 +50,6 @@ export default class UploadScan extends Component {
 			data
 		})
 			.then(res => {
-				console.log("UploadScan -> onSubmit -> res", res.data)
 				// get result
 				let result = 1;
 				if(get(res ,'data.result', '') == " Covid ") {

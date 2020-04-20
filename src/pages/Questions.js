@@ -44,7 +44,6 @@ export default () => {
     }
 
     const onComplete = (que_list, scan_result) => {
-        console.log("onComplete -> scan_result", scan_result)
         // scan_result : 0 | 1 | 2
         let curr_risk_index = 0
 
@@ -64,8 +63,6 @@ export default () => {
                 }
             }
         }
-        console.log("onComplete -> curr_risk_index", curr_risk_index)
-        setShowResults(true)
         // calculate total score
         if(scan_result == 2) {
             // Covid
@@ -85,6 +82,7 @@ export default () => {
                 setRisk(3)
             }
         }
+        setShowResults(true)
     }
 
     return (

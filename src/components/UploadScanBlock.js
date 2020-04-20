@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactCrop from 'react-image-crop';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPaperclip, faCropAlt, faTimes, faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { faPaperclip, faChartLine, faTimes } from '@fortawesome/free-solid-svg-icons'
 
 import 'react-image-crop/lib/ReactCrop.scss';
 
@@ -45,17 +45,25 @@ export default class UploadScanBlock extends Component {
 		this.setState({crop})
 	}
 
-	onImageLoaded = image => {
+	onImageLoaded = (image) => {
 		this.imageRef = image;
+		const crop = { width: image.width, height: image.height }
+
+		this.createBlob(image, crop)
 	};
 
-	onCropClick = () => {
-		this.makeClientCrop(this.state.crop)
+	onDragEnd = (event) => {
+		const { crop } = this.state
+		this.createBlob(this.imageRef, crop)
 	}
 
-	onSkipClick = () => {
-		this.props.setCropImage(this.state.imgSrc)
-	}
+	// onCropClick = () => {
+	// 	this.makeClientCrop(this.state.crop)
+	// }
+
+	// onSkipClick = () => {
+	// 	this.props.setCropImage(this.state.imgSrc)
+	// }
 
 	onCropCancleClick = () => {
 		this.setState({ imgSrc: null, 
@@ -63,7 +71,7 @@ export default class UploadScanBlock extends Component {
 				unit: '%',
 			}
 		})
-		this.props.setCropImage(null)
+		this.props.setBlob(null)
 	}
 
 	//////////////////////////////////////
@@ -78,8 +86,43 @@ export default class UploadScanBlock extends Component {
 										crop,
 										'newFile.jpeg'
 									);
-			this.props.setCropImage(croppedImageUrl)
+			// this.props.setCropImage(croppedImageUrl)
 		}
+	}
+
+	createBlob(image, crop) {
+
+		const canvas = document.createElement('canvas');
+		const scaleX = image.naturalWidth / image.width;
+		const scaleY = image.naturalHeight / image.height;
+		canvas.width = crop.width;
+		canvas.height = crop.height;
+		const ctx = canvas.getContext('2d');
+
+		ctx.drawImage(
+			image,
+			crop.x * scaleX,
+			crop.y * scaleY,
+			crop.width * scaleX,
+			crop.height * scaleY,
+			0,
+			0,
+			crop.width,
+			crop.height
+		);
+
+		return new Promise((resolve, reject) => {
+			canvas.toBlob(blob => {
+				if (!blob) {
+					//reject(new Error('Canvas is empty'));
+					console.error('Canvas is empty');
+					return;
+				}
+
+				blob.name = 'newFile.jpeg';
+				this.props.setBlob(blob)		
+			});
+		});
 	}
 
 	getCroppedImg(image, crop, fileName) {
@@ -121,6 +164,7 @@ export default class UploadScanBlock extends Component {
 
 	render = () => {
 		const { imgSrc, crop } = this.state
+		const { onAnalyse, is_analysing } = this.props
 		
 		if(imgSrc) { // step 2 - crop image
 			return (
@@ -129,23 +173,17 @@ export default class UploadScanBlock extends Component {
 						src={imgSrc} 
 						crop={crop}
 						onImageLoaded={this.onImageLoaded}
-						onChange={this.handleOnCropChange}/>
+						onChange={this.handleOnCropChange}
+						onDragEnd={this.onDragEnd}
+					/>
 
 					<div className="action-wrapper">
 
 						<div className="action">
-							<button className="btn accent-btn" 
-								onClick={this.onCropClick}>
-									<FontAwesomeIcon icon={faCropAlt} />
-									Crop
-							</button>
-						</div>
-
-						<div className="action">
-							<button className="btn accent-light-btn" 
-								onClick={this.onSkipClick}>
-									<FontAwesomeIcon icon={faArrowRight} />
-									Skip
+							<button className="btn accent-btn"
+								onClick={onAnalyse}>
+									<FontAwesomeIcon icon={faChartLine} />
+								{is_analysing ? "Loading..." : "Analyse"}
 							</button>
 						</div>
 

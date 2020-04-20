@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import Axios from "axios"
 import {get} from 'lodash'
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUndoAlt, faChartLine } from '@fortawesome/free-solid-svg-icons'
-
 import UploadScanBlock from "../components/UploadScanBlock"
 
 import './UploadScan.scss'
@@ -21,8 +18,8 @@ export default class UploadScan extends Component {
 
 	constructor(props){
 		super(props)
+
 		this.state = {
-			croppedImageUrl: null,
 			blob: null,
 			loading: false
 		}
@@ -78,42 +75,17 @@ export default class UploadScan extends Component {
 	}
 
 	render = () => {
-		const { croppedImageUrl, loading } = this.state
+		const { loading } = this.state
 
 		return (
-			<div className="upload-scan-wrapper">
-				{croppedImageUrl ? 
-					<form id="scan-form" className="crop-wrapper">
-						<img className="cropperd-image" src={croppedImageUrl} alt="crop"/>
-		
-						<div className="action-wrapper">
-		
-							<div className="action">
-								<button className="btn accent-btn"
-									onClick={this.onSubmit}
-									>
-										<FontAwesomeIcon icon={faChartLine} />
-									{loading ? "Loading..." : "Analyse"}
-								</button>
-							</div>
-		
-							<div className="action">
-								<button className="btn accent-secondary-btn" 
-									onClick={() => this.setState({ croppedImageUrl: null })}>
-										<FontAwesomeIcon icon={faUndoAlt} />
-										Crop Again
-								</button>
-							</div>
-		
-						</div>
-					</form>
-					:
-					<UploadScanBlock 
-						setCropImage={this.setCropImage}
-						setBlob={this.setBlob}
-					/>
-				}
-			</div>
+			<form id="scan-form" className="upload-scan-wrapper">
+				<UploadScanBlock 
+					setCropImage={this.setCropImage}
+					setBlob={this.setBlob}
+					onAnalyse={this.onSubmit}
+					is_analysing={loading}
+				/>
+			</form>
 		)
 	}
 }

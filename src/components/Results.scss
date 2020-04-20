@@ -29,18 +29,25 @@
 				&.right {
 					text-align: right;
 					font-weight: bold;
-					font-size: 1.8em;
-	
-					&.low {
-						color: $green;
-					}
-	
-					&.medium {
-						color: $accent-color;
-					}
-	
-					&.high {
-						color: $red;
+
+					.status-block {
+						display: inline-block;
+						padding: .4em .8em;
+						font-size: 1.5em;
+						color: whitesmoke;
+						border-radius: 10px;
+
+						&.low {
+							background-color: $green;
+						}
+		
+						&.medium {
+							background-color: $accent-color;
+						}
+		
+						&.high {
+							background-color: $red;
+						}
 					}
 				}
 			}

@@ -19,7 +19,9 @@ export default ({data, risk}) => {
 			<div className='header'>
 				<div className="header-content">
 					<div className="content left">{data.header_title}</div>
-					<div className={`content right ${risk_type}`}>{data[risk_type]}</div>
+					<div className="content right">
+						<div className={`status-block ${risk_type}`}>{data[risk_type]}</div>
+					</div>
 				</div>
 			</div>
 
@@ -27,7 +29,7 @@ export default ({data, risk}) => {
 				<div className='recom-title'>
 					{recom.title}
 				</div>
-				
+
 				{recom.list.map((item, ind)=> {
 					return (
 						<div className='recom-content' key={ind}>

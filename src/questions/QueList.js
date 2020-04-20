@@ -28,6 +28,17 @@ export default class QueList extends React.Component{
         this.setState({question_list : new_list, current_ind : current_ind + 1 })
     }
 
+    // called by UploadScanQue, set Scan result
+    onComplete = (scan_result) => {
+        // scan_result : 0 | 1 | 2
+        const {onComplete} = this.props
+        const {question_list} = this.state
+        let result_list = [...question_list, {q_key:'scan', ans : scan_result}]
+        // add scan res to question_list
+        // pass question_list to parent
+        onComplete(result_list)
+    }
+
     render = () => {
         const {question_list, current_ind} = this.state
 
@@ -59,9 +70,9 @@ export default class QueList extends React.Component{
                                 />
                     }
                 })}
-                <UploadScanQuestion onComplete={this.props.onComplete} />
+                <UploadScanQuestion onComplete={this.onComplete} />
                 {current_ind >= question_list.length &&
-                    <UploadScanQuestion />
+                    <></>
                 }
             </div>
         )

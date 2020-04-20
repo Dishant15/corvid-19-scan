@@ -35,6 +35,7 @@ export default () => {
     const [ans_selected, setAnsSelected] = useState(false)
 
     const [show_results, setShowResults] = useState(false)
+    const [risk, setRisk] = useState('')
 
     const selectLanguage = (_, lang) => {
         setLanguage(lang)
@@ -42,8 +43,8 @@ export default () => {
         getApiData(lang)
     }
 
-    const onComplete = (scan_result) => {
-        // scan_result : 0 | 1 | 2
+    const onComplete = (que_list) => {
+        console.log("onComplete -> que_list", que_list)
         setShowResults(true)
         // calculate total score
     }
@@ -61,7 +62,7 @@ export default () => {
             }
 
             {show_results &&
-                <Result />
+                <Result data={results} />
             }
         </div>
     )

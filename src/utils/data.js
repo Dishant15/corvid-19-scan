@@ -21,7 +21,7 @@ export const useGetQuestionsData = () => {
         const url = 'http://ec2-3-7-38-181.ap-south-1.compute.amazonaws.com/v1/api/bot/'
         Axios.post(url, {language})
 			.then(res => {
-                // console.log(res)
+                // console.log(res.data)
                 // create question list
                 let questions = get(res, 'data.bot.messages', {})
                 let confirm_text = get(res, 'data.bot.selectedText', 'confirm')
@@ -49,6 +49,7 @@ export const useGetQuestionsData = () => {
                     que_list.push(current_que)
                 }
                 setData(que_list)
+                setResults(res.data.risk)
                 setApiState({loading:false, fetched : true, error : {}})
 			})
 			.catch(err => {

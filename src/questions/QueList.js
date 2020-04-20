@@ -68,9 +68,9 @@ export default class QueList extends React.Component{
                                 />
                     }
                 })}
-                <UploadScanQuestion onComplete={this.onComplete} />
+                
                 {current_ind >= question_list.length &&
-                    <></>
+                    <UploadScanQuestion onComplete={this.onComplete} />
                 }
             </div>
         )

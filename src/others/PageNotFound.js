@@ -1,6 +1,6 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import { LOGO_SMALL, BLUR_BG, CHECK_ICON } from '../constants';
+import { BLUR_BG, CHECK_ICON } from '../constants';
 
 import LoadingButton from './LoadingButton'
 
@@ -16,7 +16,7 @@ export default (props) => {
 	return (
 		<React.Fragment>
 			<div class="auth-fixed-bg">
-                <img src={BLUR_BG} />
+                <img src={BLUR_BG} alt="" />
             </div>    
             <div class="auth-body-wrapper">
                 <div class="auth-card">

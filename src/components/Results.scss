@@ -1,0 +1,78 @@
+@import '../global-styles/constants.scss';
+
+#results {
+	width: 100%;
+	max-width: 640px;
+	margin: 0 auto;
+	box-shadow: 0px 2px 6px 1px rgba(47, 50, 59, 0.3);
+	border-radius: 10px;
+	padding: 40px;
+	
+	.header {
+		padding-bottom: 1em;
+		border-bottom: 1px solid lighten($color: $primary-color, $amount: 10%);
+
+		.header-content {
+			display: table;
+			width: 100%;
+
+			.content {
+				display: table-cell;
+				vertical-align: middle;
+	
+				&.left {
+					font-weight: 500;
+					font-size: 1.3em;
+					color: $accent-color
+				}
+	
+				&.right {
+					text-align: right;
+					font-weight: bold;
+					font-size: 1.8em;
+	
+					&.low {
+						color: $green;
+					}
+	
+					&.medium {
+						color: $accent-color;
+					}
+	
+					&.high {
+						color: $red;
+					}
+				}
+			}
+		}
+
+	}
+
+	.recom-title {
+		font-weight: 500;
+		font-size: .95em;
+		padding: 1.2em 0;
+		color: $accent-dark;
+		text-align: center;
+	}
+
+	.recom-content {
+		display: table;
+		width: 100%;
+		padding: .5em 1em;
+		font-weight: bold;
+		color: $primary-color;
+
+		&>div {
+			display: table-cell;
+
+			&:first-child {
+				width: 1.6em;
+			}
+
+			a {
+				color: $accent-color;
+			}
+		}
+	}
+}

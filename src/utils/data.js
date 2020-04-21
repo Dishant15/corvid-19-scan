@@ -62,3 +62,28 @@ export const useGetQuestionsData = () => {
 
     return [api_state, data, getApiData, results]
 }
+
+
+export const useStateApiData = () => {
+    const [api_state, setApiState] = useState({ loading: false, fetched: false, error: {} })
+    const [data, setData] = useState({})
+
+    const getApiData = () => {
+        if (api_state.loading) return;
+
+        const url = 'https://api.rootnet.in/covid19-in/stats/latest'
+
+        Axios.get(url).then(res => {
+            // console.log("res => data", res.data)
+            setData(res.data)
+            setApiState({ loading: false, fetched: true, error: {} })
+        }).catch(err => {
+            // console.log("res => err", err)
+            setApiState({ loading: false, fetched: false, error: {} })
+        })
+
+        setApiState({ ...api_state, loading: true, error: {} })
+    }
+
+    return [api_state, data, getApiData]
+}

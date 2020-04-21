@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useEffect } from 'react'
 
 import { useStateApiData } from '../utils/data'
-import { get, size, trim, find } from 'lodash'
+import { get, size, find } from 'lodash'
 
 
 
@@ -12,7 +12,7 @@ export default () => {
         getApiData()
     }, [])
 
-    console.log("state wise data => ", data, api_state)
+    // console.log("state wise data => ", data, api_state)
 
     let regions = get(data, "data.regional", [])
 

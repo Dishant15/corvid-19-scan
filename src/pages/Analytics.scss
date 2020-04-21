@@ -1,0 +1,79 @@
+@import '../global-styles/constants.scss';
+
+.analytics-page {
+	.state-wrapper {
+		display: flex;
+		max-width: 600px;
+		margin: 0 auto;
+		padding: 3em 3em 0em 3em;
+		align-items: center;
+
+		.col {
+			flex: 1;
+
+			&.title {
+				font-size: 1.2em;
+				font-weight: bold;
+				color: rgb(47, 50, 59);
+			}
+
+			.select__control {
+				box-shadow: none;
+				border-color: $primary-color;
+			}
+		}
+	}
+
+	.analytics {
+		padding: 4em 1em;
+
+		.data-wrapper {
+			max-width: 350px;
+			margin: 0 auto;
+			box-shadow: 0px 2px 6px 1px rgba(47, 50, 59, 0.3);
+			border-radius: 10px;
+			overflow: hidden;
+
+			&:first-child {
+				margin-bottom: 2em;
+			}
+
+			.data-table-title {
+				font-weight: bold;
+				font-size: 1.4em;
+				padding: .4em .2em;
+				background-color: $primary-color;
+				color: whitesmoke;
+			}
+
+			.data-table {
+				display: table;
+				width: 100%;
+
+				.data-row {
+					display: table-row;
+
+					&:nth-child(even) {
+						.data-col {
+							background-color: #fff;
+						}
+					}
+
+					.data-col {
+						display: table-cell;
+						padding: .5em 1.4em;
+						line-height: 1.5;
+						text-align: left;
+						vertical-align: middle;
+						background-color: rgba(88, 173, 249, .12);
+						color: rgba(0, 0, 0, .90);
+
+						&:last-child {
+							text-align: right;
+						}
+					}
+				}
+			}
+		}
+	}
+}

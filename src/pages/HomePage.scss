@@ -2,10 +2,12 @@
 @import '../global-styles/button';
 
 #HomePage {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	min-height: 100vh;
 
-  background-color: $primary-color;
+	background-color: $primary-color;
+	max-width: 1260px;
+	margin: 0 auto;
 }

@@ -15,4 +15,4 @@ export const HEADER_BANNER_BG = "https://office-static.s3.eu-west-2.amazonaws.co
 export const DEFAULT_AVATAR = "https://office-static.s3.eu-west-2.amazonaws.com/media/default_avatar.jpeg"
 
 
-export const UPLOAD_SCAN_URL = "http://3.7.38.181/v1/api/uploaddata/"
+export const UPLOAD_SCAN_URL = "http://aived.in/v1/api/uploaddata/"
